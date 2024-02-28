@@ -1,0 +1,43 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<header>
+    <div class="navigation">
+        <ul>
+            {% if user.is_authenticated %}
+                <li><a href="#" class="username">Hello {{ user.first_name }}</a></li>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'create-room' %}">Create a new room</a></li>
+
+                <li>
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="logout-btn">Logout</button>
+                    </form>
+                </li>
+            {% else %}
+                <li><a href="{% url 'login-user' %}">Login</a></li>
+                <li><a href="{% url 'create-user' %}">New User</a></li>
+
+            {% endif %}
+
+        </ul>
+    </div>
+</header>
+<body>
+<div class="content">
+    {% block content %}
+
+    {% endblock %}
+</div>
+</body>
+</html>

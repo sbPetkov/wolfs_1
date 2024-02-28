@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>You are a PROPHET</h2>
+    <p>Select a player to reveal their role:</p>
+    <form method="post">
+        {% csrf_token %}
+        <ul>
+            {% for player in players.all %}
+                {% if player.is_alive %}
+                <li>
+                    <input type="radio" id="player_{{ player.id }}" name="prophet_vote" value="{{ player.id }}">
+                    <label for="player_{{ player.id }}">{{ player.user.first_name }}</label>
+                </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}

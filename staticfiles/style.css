@@ -1,0 +1,80 @@
+body {
+    display: flex;
+    height: 100vh;
+    margin: 20px;
+    color: lightgray;
+    background-image: url('/staticfiles/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.navigation {
+    background: linear-gradient(to right, navy, black);
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 0;
+}
+
+.navigation ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    width: 100%;
+    font-family: "Comic Sans MS";
+}
+
+.navigation li {
+    float: left;
+}
+
+.navigation li a {
+    color: white;
+    display: block;
+    padding: 14px 16px;
+    background-color: transparent;
+    border-radius: 20px;
+    transition: border 0.3s, transform 0.3s;
+    text-underline: none;
+}
+
+.navigation li a.username {
+    padding: 14px 8px; /* Adjust padding to align with other buttons */
+}
+
+.navigation li a.logout-btn {
+    padding: 10px 16px; /* Adjust padding to align with other buttons */
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.navigation li a:hover {
+    border: 1px solid black;
+    transform: scale(1.05);
+}
+
+.container {
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2em;
+    padding: 2em;
+    border: 1px solid black;
+}
+
+.room {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2em;
+    padding: 2em;
+    border: 1px solid black;
+    flex-basis: 300px;
+    flex-grow: 1;
+    flex-shrink: 1;
+}

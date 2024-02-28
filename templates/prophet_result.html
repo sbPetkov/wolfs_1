@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Prophet Result</h2>
+    <p>{{ result }}</p>
+    <a href="{% url 'game' pk=current_game.pk %}">Back to Game</a>
+{% endblock %}

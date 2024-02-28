@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div>
+        <h1>Hanging Phase</h1>
+    <form method="post">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Select a player to hang:</legend>
+            {% for player in players_in_game %}
+                {% if player.is_alive %}
+                <label>
+                    <input type="radio" name="player" value="{{ player.pk }}">
+                    {{ player.user.first_name }}
+                </label><br>
+                {% endif %}
+            {% endfor %}
+            <label>
+                <input type="radio" name="player" value="NONE" checked>
+                None (Skip Hanging)
+            </label><br>
+        </fieldset>
+        <button type="submit">Hang Player</button>
+    </form>
+    </div>
+{% endblock %}

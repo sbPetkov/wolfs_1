@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div>
+
+        <div class="container">
+            <div>
+                <h2>List with all rooms</h2>
+            </div>
+            <div class="room">
+                <ul>
+                    {% for room in object_list %}
+
+
+                        <li>Room admin - {{ room.admin.first_name }}
+
+                            <a href="{% url 'details-room' pk=room.pk %}">
+                                Room settings
+                            </a>
+                            <a href="{% url 'delete-room' pk=room.pk %}">Delete room</a>
+                        </li>
+
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div>
+            <h2>Current Games</h2>
+            <ul>
+                {% for game in games %}
+
+                    {% for player in game.all_players.all %}
+                        <li>
+                            {{ player.user.first_name }}, {{ player.player_character }}
+                        </li>
+
+                    {% endfor %}
+                    <a href="{% url 'game' pk=game.pk %}">Join this game</a>
+                    <br>
+                    <bl></bl>
+                    <a href="{% url 'delete-game' pk=game.pk %}">Delete</a>
+                {% endfor %}
+            </ul>
+        </div>
+
+
+{% endblock %}

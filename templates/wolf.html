@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    
+    <h2>You are a WOLF</h2>
+    <form method="post">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Select a player to be KILLED</legend>
+            {% for good_player in current_game.good_players.all %}
+                {% if good_player.is_alive %}
+                    <input type="radio" id="player_{{ good_player.id }}" name="wolf_vote" value="{{ good_player.id }}">
+                    <label for="player_{{ good_player.id }}">{{ good_player.user.first_name }}</label><br>
+                {% endif %}
+            {% endfor %}
+        </fieldset>
+        <button type="submit">Vote</button>
+    </form>
+{% endblock %}

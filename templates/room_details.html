@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Room admin - {{ object.admin.first_name }}</h2>
+    
+    <h3>Players: </h3>
+    <form method="post">
+        {% csrf_token %}
+        <ul>
+            {% for user in users %}
+                <li>
+                    {{ user.first_name }}:
+                    <select name="{{ user.id }}">
+                        {% for character in characters %}
+                            <option value="{{ character.id }}">{{ character.role }}</option>
+                        {% endfor %}
+                    </select>
+                </li>
+            {% endfor %}
+        </ul>
+        <button type="submit">Save</button>
+    </form>
+    <form method="get" action="{% url 'create-game' pk=object.id %}">
+        <button type="submit">Start Game</button>
+    </form>
+{% endblock %}

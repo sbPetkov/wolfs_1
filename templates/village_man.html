@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>You are nothing but a poor village man. Go milk the cows</h2>
+    <h3>Alive players:</h3>
+    <ul>
+        {% for player in players.all %}
+            {% if player.is_alive %}
+                <li>{{ player.user.first_name }}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    <a href="{% url 'game' pk=current_game.pk %}">Back to Game</a>
+{% endblock %}

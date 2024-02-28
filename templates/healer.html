@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>You are a HEALER</h2>
+    <form method="post">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Select a player to be healed:</legend>
+            {% for player in players.all %}
+                {% if player.is_alive %}
+                    <input type="radio" id="player_{{ player.id }}" name="healer_vote" value="{{ player.id }}">
+                    <label for="player_{{ player.id }}">{{ player.user.first_name }}</label><br>
+                {% endif %}
+            {% endfor %}
+        </fieldset>
+        <button type="submit">Vote</button>
+    </form>
+{% endblock %}

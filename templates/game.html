@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div style="font-size: large">
+        <h2>Players</h2>
+        <ul>
+            {% for player in game.all_players.all %}
+
+                {% if player.is_alive %}
+                    <li style="color: green">{{ player.user.first_name }} - Still alive</li>
+                {% else %}
+                    {% if player.player_character.is_role_good %}
+                        <li style="color: red">{{ player.user.first_name }} - DEAD - was a good person :(</li>
+                    {% else %}
+                        <li style="color: red">{{ player.user.first_name }} - DEAD - Pure Evil</li>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </ul>
+        <a href="{% url 'night-phase' pk=game.pk %}">Start night phase</a>
+        <br><br><br><br>
+        {% if user.username == 'svilenpetkov' %}
+            <a href="{% url 'submit-results' pk=game.pk %}">Reveal result</a>
+            <br><br>
+            <a href="{% url 'hang-or-go' pk=game.pk %}">Hang someone or continue</a>
+        {% endif %}
+    </div>
+{% endblock %}
